@@ -16,4 +16,9 @@ public interface IApplicationRepository
     /// Adds a new Application entity.
     /// </summary>
     Task AddApplicationAsync(Application app);
+    
+    /// <summary>
+    /// Retrieves an Application by its identifier.
+    /// </summary>
+    Task<Application> GetApplicationByIdAsync(int id);
 }

@@ -21,7 +21,7 @@ public interface IPasswordService
     /// <summary>
     /// Adds a new password. Business logic such as encryption can be applied here.
     /// </summary>
-    Task AddPasswordAsync(CreatePasswordDto password);
+    Task AddPasswordAsync(CreatePasswordDto password, ApplicationType appType);
 
     /// <summary>
     /// Deletes a password by its identifier.

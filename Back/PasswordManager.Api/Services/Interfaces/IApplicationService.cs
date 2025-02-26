@@ -1,3 +1,4 @@
+using PasswordManager.Api.Domain.Models;
 using PasswordManager.Api.Dto;
 
 namespace PasswordManager.Api.Services.Interfaces;
@@ -16,4 +17,9 @@ public interface IApplicationService
     /// Creates a new application from the provided DTO.
     /// </summary>
     Task<ApplicationDto> CreateApplicationAsync(CreateApplicationDto createDto);
+    
+    /// <summary>
+    /// Retrieves the ApplicationType for a given Application ID.
+    /// </summary>
+    Task<ApplicationType> GetApplicationTypeByIdAsync(int id);
 }

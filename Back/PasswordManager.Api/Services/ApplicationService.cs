@@ -1,3 +1,4 @@
+using PasswordManager.Api.Domain.Models;
 using PasswordManager.Api.Dto;
 using PasswordManager.Api.Mappers;
 using PasswordManager.Api.Repositories.Interfaces;
@@ -29,5 +30,15 @@ public class ApplicationService : IApplicationService
         var appEntity = ApplicationMapper.ToEntity(createDto);
         await _applicationRepository.AddApplicationAsync(appEntity);
         return ApplicationMapper.ToDto(appEntity);
+    }
+    
+    public async Task<ApplicationType> GetApplicationTypeByIdAsync(int id)
+    {
+        var app = await _applicationRepository.GetApplicationByIdAsync(id);
+        if (app == null)
+        {
+            throw new KeyNotFoundException($"Application with id {id} not found.");
+        }
+        return app.ApplicationType;
     }
 }

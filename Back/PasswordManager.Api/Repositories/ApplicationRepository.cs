@@ -27,4 +27,9 @@ public class ApplicationRepository : IApplicationRepository
         _context.Applications.Add(app);
         await _context.SaveChangesAsync();
     }
+    
+    public async Task<Application> GetApplicationByIdAsync(int id)
+    {
+        return await _context.Applications.FirstOrDefaultAsync(a => a.ApplicationId == id);
+    }
 }

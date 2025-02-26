@@ -44,7 +44,7 @@ public class PasswordManagerDbContext : DbContext
             { 
                 ApplicationId = 1, 
                 ApplicationName = "Example App 1", 
-                ApplicationType = ApplicationType.Public 
+                ApplicationType = ApplicationType.Public
             },
             new Application 
             { 
