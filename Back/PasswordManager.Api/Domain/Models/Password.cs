@@ -23,9 +23,15 @@ public class Password
     /// </summary>
     [Required]
     public string EncryptedPassword { get; set; }
+    
+    /**
+     * Identifier of the application
+     */
+    [Required]
+    public int ApplicationId { get; set; }
 
     /// <summary>
-    /// 
+    /// Reference to the application
     /// </summary>
     [ForeignKey("ApplicationId")]
     public Application Application { get; set; }

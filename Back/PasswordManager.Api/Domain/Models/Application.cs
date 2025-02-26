@@ -7,6 +7,9 @@ namespace PasswordManager.Api.Domain.Models;
  */
 public class Application
 {
+    /**
+     * Identifier of the application
+     */
     [Key]
     public int ApplicationId { get; set; }
         
@@ -23,5 +26,8 @@ public class Application
     [Required]
     public ApplicationType ApplicationType { get; set; }
     
+    /**
+     * List of passwords associated with the application
+     */
     public List<Password> Passwords { get; set; } = new();
 }
