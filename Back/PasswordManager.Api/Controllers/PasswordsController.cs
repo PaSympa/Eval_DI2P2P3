@@ -31,6 +31,17 @@ public class PasswordsController : ControllerBase
         var passwords = await _passwordService.GetAllPasswordsAsync();
         return Ok(passwords);
     }
+    
+    /// <summary>
+    /// GET api/passwords/encrypted
+    /// Retrieves all passwords with the encrypted (raw) values.
+    /// </summary>
+    [HttpGet("encrypted")]
+    public async Task<ActionResult<IEnumerable<PasswordDto>>> GetEncryptedPasswords()
+    {
+        var passwords = await _passwordService.GetEncryptedPasswordsAsync();
+        return Ok(passwords);
+    }
 
     /// <summary>
     /// GET api/passwords/{id}
@@ -40,6 +51,19 @@ public class PasswordsController : ControllerBase
     public async Task<ActionResult<PasswordDto>> GetPasswordById(int id)
     {
         var password = await _passwordService.GetPasswordByIdAsync(id);
+        if (password == null)
+            return NotFound();
+        return Ok(password);
+    }
+    
+    /// <summary>
+    /// GET api/passwords/{id}/encrypted
+    /// Retrieves the encrypted (raw) password by its identifier.
+    /// </summary>
+    [HttpGet("{id}/encrypted")]
+    public async Task<ActionResult<PasswordDto>> GetEncryptedPasswordById(int id)
+    {
+        var password = await _passwordService.GetEncryptedPasswordByIdAsync(id);
         if (password == null)
             return NotFound();
         return Ok(password);

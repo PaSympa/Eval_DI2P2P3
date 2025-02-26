@@ -48,6 +48,25 @@ public class PasswordService : IPasswordService
 
         return passwordDtos;
     }
+    
+    public async Task<IEnumerable<PasswordDto>> GetEncryptedPasswordsAsync()
+    {
+        var passwords = await _passwordRepository.GetAllPasswordsAsync();
+
+        var passwordDtos = passwords.Select(p => PasswordMapper.ToDto(p));
+
+        return passwordDtos;
+    }
+
+    public async Task<PasswordDto> GetEncryptedPasswordByIdAsync(int id)
+    {
+        var password = await _passwordRepository.GetPasswordByIdAsync(id);
+        if (password == null)
+            return null;
+
+        var dto = PasswordMapper.ToDto(password);
+        return dto;
+    }
 
     public async Task<PasswordDto> GetPasswordByIdAsync(int id)
     {
