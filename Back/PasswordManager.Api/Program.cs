@@ -60,14 +60,13 @@ builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
-// Register middlewares to the HTTP pipeline
-//app.UseMiddleware<ApiKeyMiddleware>();
+app.UseMiddleware<ApiKeyMiddleware>();
 
 // Configuration of the HTTP pipeline
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
-    app.MapScalarApiReference();
+    //app.MapScalarApiReference();
 }
 
 // Configuration of the HTTPS redirection
