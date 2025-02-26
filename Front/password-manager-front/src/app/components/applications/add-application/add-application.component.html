@@ -1,0 +1,52 @@
+<div class="container mx-auto p-8">
+  <div class="max-w-md mx-auto bg-white shadow-lg rounded-lg p-6">
+    <h2 class="text-2xl font-bold mb-6 text-center">Add New Application</h2>
+
+    <form [formGroup]="applicationForm" (ngSubmit)="onSubmit()" class="space-y-6">
+      <!-- Application Name -->
+      <div>
+        <label class="block font-medium mb-2" for="applicationName">Application Name</label>
+        <input formControlName="applicationName" id="applicationName" type="text" placeholder="Enter application name"
+               class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-primary"
+               [ngClass]="{'border-red-500': applicationForm.get('applicationName')?.invalid && applicationForm.get('applicationName')?.touched}" />
+        @if (applicationForm.get('applicationName')?.invalid && applicationForm.get('applicationName')?.touched) {
+          <div class="text-red-500 text-sm mt-1">
+            Application Name is required.
+          </div>
+        }
+      </div>
+
+      <!-- Application Type -->
+      <div class="w-full mb-4">
+        <mat-form-field appearance="fill" class="w-full">
+          <mat-label>Application Type</mat-label>
+          <mat-select formControlName="applicationType"
+                      [ngClass]="{'border-red-500': applicationForm.get('applicationType')?.invalid && applicationForm.get('applicationType')?.touched}">
+            <mat-option value="Public">Public</mat-option>
+            <mat-option value="Professional">Professional</mat-option>
+          </mat-select>
+        </mat-form-field>
+        @if (applicationForm.get('applicationType')?.invalid && applicationForm.get('applicationType')?.touched) {
+          <div class="text-red-500 text-sm mt-1">
+            Please select an application type.
+          </div>
+        }
+      </div>
+
+      <button type="submit" class="w-full py-3 bg-primary text-white rounded hover:bg-primary-dark transition-colors">
+        Add Application
+      </button>
+    </form>
+
+    @if (successMessage) {
+      <div class="mt-6 text-center text-green-600 font-medium">
+        {{ successMessage }}
+      </div>
+    }
+    @if (errorMessage) {
+      <div class="mt-6 text-center text-red-600 font-medium">
+        {{ errorMessage }}
+      </div>
+    }
+  </div>
+</div>

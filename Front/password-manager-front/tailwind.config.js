@@ -7,11 +7,11 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          lightest: '#E0F7FA', // very light blue
-          lighter:  '#B2EBF2', // lighter blue
-          light:    '#80DEEA', // light blue
-          DEFAULT:  '#4DD0E1', // default blue
-          dark:     '#26C6DA', // dark blue
+          lightest: '#EDE9FE', // very light purple
+          lighter:  '#DDD6FE', // lighter purple
+          light:    '#C4B5FD', // light purple
+          DEFAULT:  '#A78BFA', // default purple
+          dark:     '#8B5CF6', // dark purple
         },
       },
     },
