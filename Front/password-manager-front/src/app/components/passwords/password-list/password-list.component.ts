@@ -25,19 +25,19 @@ export class PasswordListComponent {
   constructor(private passwordService: PasswordService) {}
 
   ngOnInit(): void {
-    this.fetchPasswords();
+    this.fetchEncryptedPasswords();
   }
 
-  fetchPasswords() {
+  fetchEncryptedPasswords(): void {
     this.loading = true;
-    this.passwordService.getPasswords().subscribe({
+    this.passwordService.getEncryptedPasswords().subscribe({
       next: (data) => {
         this.passwords = data;
         this.loading = false;
       },
       error: (err) => {
         console.error(err);
-        this.errorMessage = 'Failed to load passwords.';
+        this.errorMessage = 'Failed to load encrypted passwords.';
         this.loading = false;
       }
     });
@@ -45,7 +45,7 @@ export class PasswordListComponent {
 
   deletePassword(id: number) {
     this.passwordService.deletePassword(id).subscribe({
-      next: () => this.fetchPasswords(),
+      next: () => this.fetchEncryptedPasswords(),
       error: (err) => console.error(err)
     });
   }
