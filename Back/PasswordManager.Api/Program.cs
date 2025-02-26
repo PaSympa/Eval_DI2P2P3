@@ -51,7 +51,16 @@ builder.Services.AddSingleton<RsaEncryptionStrategy>(sp =>
 });
 builder.Services.AddSingleton<AesEncryptionStrategy>();
 
-
+// Add CORS policy for Angular development
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngularDev", policy =>
+    {
+        policy.WithOrigins("http://localhost:4200")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
 
 // Register controllers to the container
 builder.Services.AddControllers();
@@ -60,6 +69,7 @@ builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
+app.UseCors("AllowAngularDev");
 app.UseMiddleware<ApiKeyMiddleware>();
 
 // Configuration of the HTTP pipeline
