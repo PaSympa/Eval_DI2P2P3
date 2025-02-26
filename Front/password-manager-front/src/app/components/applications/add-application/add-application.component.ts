@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {ApplicationService} from '../../services/application.service';
-import {CreateApplicationDto} from '../../dto/application-dto';
+import {ApplicationService} from '../../../services/application.service';
+import {CreateApplicationDto} from '../../../dto/application-dto';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {NgClass} from '@angular/common';
 
 @Component({
   selector: 'app-add-application',
@@ -12,6 +13,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     ReactiveFormsModule,
     MatSelectModule,
     MatFormFieldModule,
+    NgClass,
   ],
   templateUrl: './add-application.component.html',
   styleUrl: './add-application.component.scss'

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {ApplicationService} from '../../services/application.service';
-import {ApplicationDto} from '../../dto/application-dto';
+import {ApplicationService} from '../../../services/application.service';
+import {ApplicationDto} from '../../../dto/application-dto';
 import {RouterLink} from '@angular/router';
 
 @Component({
