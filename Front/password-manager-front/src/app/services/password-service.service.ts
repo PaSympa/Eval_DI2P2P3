@@ -23,6 +23,14 @@ export class PasswordService {
   }
 
   /**
+   * Retrieves a list of all passwords with encrypted passwords.
+   */
+  getEncryptedPasswords(): Observable<PasswordDto[]> {
+    const headers = new HttpHeaders().set('x-api-key', environment.apiKey);
+    return this.http.get<PasswordDto[]>(`${this.apiUrl}/encrypted`, { headers });
+  }
+
+  /**
    * Retrieves a password by its ID.
    * @param id The unique identifier of the password.
    * @returns An Observable containing the PasswordDto for the given ID.
@@ -30,6 +38,15 @@ export class PasswordService {
   getPasswordById(id: number): Observable<PasswordDto> {
     const headers = new HttpHeaders().set('x-api-key', environment.apiKey);
     return this.http.get<PasswordDto>(`${this.apiUrl}/${id}`, { headers });
+  }
+
+  /**
+   * Retrieves a single password by its ID, returning the encrypted value.
+   * @param id The unique identifier of the password.
+   */
+  getEncryptedPasswordById(id: number): Observable<PasswordDto> {
+    const headers = new HttpHeaders().set('x-api-key', environment.apiKey);
+    return this.http.get<PasswordDto>(`${this.apiUrl}/${id}/encrypted`, { headers });
   }
 
   /**

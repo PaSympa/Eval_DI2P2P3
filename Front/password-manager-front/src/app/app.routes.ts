@@ -6,11 +6,25 @@ import {AddPasswordComponent} from './components/passwords/add-password/add-pass
 import {PasswordDetailComponent} from './components/passwords/password-detail/password-detail.component';
 
 export const routes: Routes = [
-  { path: 'applications', component: ApplicationListComponent },
-  { path: 'add-application', component: AddApplicationComponent },
-  { path: 'passwords', component: PasswordListComponent },
-  { path: 'add-password', component: AddPasswordComponent },
-  { path: 'passwords/:id', component: PasswordDetailComponent },
+  {
+    path: 'applications',
+    children: [
+      { path: '', component: ApplicationListComponent },
+      { path: 'add', component: AddApplicationComponent },
+      { path: '**', redirectTo: '' }
+    ]
+  },
+  {
+    path: 'passwords',
+    children: [
+      { path: '', component: PasswordListComponent },
+      { path: 'add', component: AddPasswordComponent },
+      { path: ':id', component: PasswordDetailComponent },
+      { path: '**', redirectTo: '' }
+    ]
+  },
+
   { path: '', redirectTo: 'applications', pathMatch: 'full' },
-  { path: '**', redirectTo: 'applications' }
+
+  { path: '**', redirectTo: 'applications', pathMatch: 'full' }
 ];
