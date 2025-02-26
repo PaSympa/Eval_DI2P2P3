@@ -1,0 +1,51 @@
+<div class="container mx-auto p-4">
+  <div class="flex items-center justify-between mb-4">
+    <h2 class="text-2xl font-bold">Applications</h2>
+    <a
+      routerLink="/add-application"
+      class="bg-primary hover:bg-primary-dark text-white font-semibold py-2 px-4 rounded"
+    >
+      Add Application
+    </a>
+  </div>
+
+  @if (loading) {
+    <div class="text-center text-gray-700">
+      Loading applications...
+    </div>
+  }
+
+  @if (errorMessage) {
+    <div class="text-red-500 mb-4">
+      {{ errorMessage }}
+    </div>
+  }
+
+  <div class="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-4">
+    @for (application of applications; track application.applicationName) {
+      <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white hover:shadow-xl transition-shadow">
+
+        <!-- Icon placeholder -->
+        <div class="flex justify-center items-center h-40 bg-gray-100">
+          <i class="fas fa-cube text-6xl text-primary"> </i>
+        </div>
+
+        <!-- Card body -->
+        <div class="px-6 py-4">
+          <h3 class="font-bold text-xl mb-2">{{ application.applicationName }}</h3>
+          <p class="text-gray-700 text-sm">
+            Type: <span class="font-semibold">{{ application.applicationType }}</span>
+          </p>
+        </div>
+
+        <!-- Tags or other details -->
+        <div class="px-6 pt-2 pb-4">
+          <span class="inline-block bg-primary-light text-primary-dark rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2">
+            #{{ application.applicationType }}
+          </span>
+        </div>
+
+      </div>
+    }
+  </div>
+</div>
