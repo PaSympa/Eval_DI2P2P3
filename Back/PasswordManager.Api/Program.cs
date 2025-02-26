@@ -17,6 +17,9 @@ builder.Services.AddDbContext<PasswordManagerDbContext>(options =>
 builder.Services.AddScoped<IPasswordRepository, PasswordRepository>();
 builder.Services.AddScoped<IPasswordService, PasswordService>();
 
+builder.Services.AddScoped<IApplicationRepository, ApplicationRepository>();
+builder.Services.AddScoped<IApplicationService, ApplicationService>();
+
 // Register controllers to the container
 builder.Services.AddControllers();
 
